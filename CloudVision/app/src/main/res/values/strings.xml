@@ -11,5 +11,6 @@
 
     <string name="btnTraduzir">Traduzir</string>
 
+
     <string name="image_picker_error">Something is wrong with that image. Pick a different one please.</string>
 </resources>
