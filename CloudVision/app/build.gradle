@@ -41,7 +41,10 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     compile 'com.google.apis:google-api-services-vision:v1-rev2-1.21.0'
     compile 'com.google.cloud:google-cloud-vision:0.22.0-beta'
-    compile 'com.google.cloud:google-cloud-translate:1.4.0'
+
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    compile 'com.google.cloud:google-cloud-translate:1.6.0'
+
     testCompile 'junit:junit:4.12'
 }
