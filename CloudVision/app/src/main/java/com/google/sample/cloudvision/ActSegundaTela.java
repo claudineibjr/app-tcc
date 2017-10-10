@@ -1,29 +1,24 @@
 package com.google.sample.cloudvision;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.TranslateOptions;
 import com.google.cloud.translate.Translation;
 
-
 import java.util.ArrayList;
-import java.util.Locale;
-
-
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.speech.RecognizerIntent;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 
 public class ActSegundaTela extends AppCompatActivity {
@@ -40,6 +35,7 @@ public class ActSegundaTela extends AppCompatActivity {
     private ImageButton btnSpeak02;
     private ImageButton btnSpeak03;
     boolean botao1=false, botao2=false, botao3=false;
+    private int nota; //0 - Nada | 1 - Bronze | 2 - Prata | 3 - Ouro
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
@@ -47,6 +43,8 @@ public class ActSegundaTela extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_segunda_tela);
+
+        nota = 3;
 
         txtTarget = (TextView) findViewById(R.id.txtTarget);
         txtSource = (TextView) findViewById(R.id.txtSource);
@@ -58,6 +56,9 @@ public class ActSegundaTela extends AppCompatActivity {
         btnSpeak02 = (ImageButton) findViewById(R.id.btnSpeak02);
         btnSpeak03 = (ImageButton) findViewById(R.id.btnSpeak03);
 
+        btnSpeak01.setActivated(true);
+        btnSpeak02.setActivated(false);
+        btnSpeak03.setActivated(false);
 
         Bundle bundle = getIntent().getExtras();
         String word = "";
@@ -129,7 +130,7 @@ public class ActSegundaTela extends AppCompatActivity {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                 getString(R.string.speech_prompt));
         try {
@@ -163,7 +164,24 @@ public class ActSegundaTela extends AppCompatActivity {
                             alertDialog = new AlertDialog.Builder(this).create();
                             alertDialog.setTitle("Você acertou!!");
                             alertDialog.setMessage("Parabéns, continue treinando. Aqui está sua recompensa:");
-                            alertDialog.setIcon(R.drawable.bronze);
+                            switch(nota){
+                                case 1:{
+                                    alertDialog.setIcon(R.drawable.bronze);
+                                    break;
+                                }
+                                case 2:{
+                                    alertDialog.setIcon(R.drawable.prata);
+                                    break;
+                                }
+                                case 3:{
+                                    alertDialog.setIcon(R.drawable.ouro);
+                                    break;
+                                }
+                                default:{
+
+                                }
+                            }
+
                             alertDialog.show();
                             txtFala01.setTextColor(Color.GREEN);
                         } else
