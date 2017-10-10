@@ -17,7 +17,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="speech_prompt">Say something&#8230;</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
-    <string name="tap_on_mic">Clique no microfone para falar</string>
+
+
+    <string name="resultado">Foi encontrado:</string>
+    <string name="btn_resultado">Tradução</string>
+    <string name="fala">Repita três vezes a palavra clicando no microfone para falar</string>
 
     <string name="image_picker_error">Tem algo de errado com essa imagem. Escolha uma diferente por favor.</string>
 </resources>
