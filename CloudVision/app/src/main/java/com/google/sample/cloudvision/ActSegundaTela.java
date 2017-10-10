@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class ActSegundaTela extends AppCompatActivity {
 
-    private static final String API_KEY = "AIzaSyCSKfEVJQWOW9O7ZVgNwQRHA2oRb192N2k";
+    private static final String API_KEY = "AIzaSyC21FofG11ZZI677OEHvCwUczFuEMwElpE";
 
     private TextView txtTarget;
     private TextView txtSource;
@@ -70,20 +70,18 @@ public class ActSegundaTela extends AppCompatActivity {
         final String finalWord = word;
         btnResultado.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"AQui 1", Toast.LENGTH_SHORT).show();
-                final Handler textViewHandler = new Handler();
-                Toast.makeText(getApplicationContext(),"AQui 2", Toast.LENGTH_SHORT).show();
+
+
+
                 new AsyncTask<Void, Void, Void>() {
-
                     @Override
-
                     protected Void doInBackground(Void... params) {
-                        Toast.makeText(getApplicationContext(),"AQui 4", Toast.LENGTH_SHORT).show();
+
                         Translate translate = TranslateOptions.newBuilder().setApiKey(API_KEY).build().getService();
-                        Toast.makeText(getApplicationContext(),"AQui 5", Toast.LENGTH_SHORT).show();
+
                         final Translation translation = translate.translate(finalWord, Translate.TranslateOption.targetLanguage("pt"));
-                        Toast.makeText(getApplicationContext(),"AQui 6", Toast.LENGTH_SHORT).show();
-                        textViewHandler.post(new Runnable() {
+
+                        txtSource.post(new Runnable() {
                             @Override
                             public void run() {
                                 txtSource.setText(translation.getTranslatedText());
